@@ -128,14 +128,12 @@ def game_hash
   }
 end
 
-def num_points_scored(name)
-  game_hash.each do | home_away , team_attr |
-    team_attr[:players].each do | player |
-      if player[:player_name] == name 
-        return player[:points]
-      end
-    end
-  end
+def players_merged
+  game_hash[:home][:players].merge(game_hash[:away][:players])
+end
+binding.pry
+def num_points_scored name
+  players_merged[name][:points]
 end
 
 def shoe_size(name)
